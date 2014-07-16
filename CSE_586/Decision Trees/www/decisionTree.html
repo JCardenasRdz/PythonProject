@@ -1,0 +1,23 @@
+<html><head>
+<script type="text/javascript" src="../helpers/jsTree.v.1.0rc2/_lib/jquery.js"></script>
+<script type="text/javascript" src="../helpers/jsTree.v.1.0rc2/_lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="../helpers/jsTree.v.1.0rc2/_lib/jquery.hotkeys.js"></script>
+<script type="text/javascript" src="../helpers/jsTree.v.1.0rc2/jquery.jstree.js"></script>
+<script type="text/javascript" src="../helpers/utils.js"></script>
+<script type="text/javascript" src="../helpers/json2.js"></script>
+
+<script type="text/javascript" src="decisionTree-utils.js"></script>
+<script type="text/javascript" src="decisionTree.js"></script>
+
+<script type="text/javascript"> 
+//var tree = [{"data":"Root Node","attr":{"rel":"folder","state":"open","id":"root"},"children":[{"data":"Child","attr":{"rel":"folder","state":"open"},"children":[]}],"tipsHere":[],"tipsBelow":[]}]
+
+makeTree(tree, "#tree")
+</script>
+
+
+<body>
+<div id="tree" class="demo"></div>
+</body>
+
+</html>

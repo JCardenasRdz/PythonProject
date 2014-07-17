@@ -104,29 +104,3 @@ if __name__ == '__main__':
 		else:
 			print 'no word match, sum_score = ', sum_score
 
-
-
-
-	
-
-	
-
-	#list(enumerate(tweets))
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-

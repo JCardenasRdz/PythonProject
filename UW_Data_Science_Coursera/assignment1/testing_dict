@@ -1,0 +1,6 @@
+residents = {'Puffin' : 104, 'Sloth' : 105, 'Burmese Python' : 106}
+
+
+room = residents['Puffin']
+
+print room

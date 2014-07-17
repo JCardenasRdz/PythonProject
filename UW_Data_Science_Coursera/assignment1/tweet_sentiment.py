@@ -74,10 +74,6 @@ if __name__ == '__main__':
 
 	tweets = [t['text'] for t in engtweets]
 	
-
-
-
-	tweets = tweets[1:50]
 	#For each tweet, print index, content of tweet, parse out content, calculate sent score
 	for idx_t, val in enumerate(tweets):
 		unicode_string = tweets[idx_t]

@@ -1,5 +1,6 @@
 import sys
 import json
+import string
 from collections import defaultdict
 
 
@@ -31,6 +32,14 @@ def main():
 
 def eng_tweets(tweets_all, key, valuelist):
 	return [engtweets for engtweets in tweets_all if engtweets[key] in valuelist]
+
+def cleanup(raw_text):
+    cleaned_up = ""
+    for char in raw_text:
+       if char not in punctuations:
+           cleaned_up = cleaned_up + char
+    return cleaned_up
+
 
 def sent_score(w):
 	sent_file = open(sys.argv[1])
@@ -75,6 +84,9 @@ if __name__ == '__main__':
 
 	#print "Running sentiment analysis on tweets..."
 	main()
+
+	#The set of punctuation in the string module
+	punctuations = set(string.punctuation)
 	
     #tweets =[rec['text'] for rec in tweets_full if 'text' in rec]
 	
@@ -104,10 +116,13 @@ if __name__ == '__main__':
 		encoded_string = unicode_string.encode('utf-8')
 		#print 'lower:', encoded_string
 		encoded_string = encoded_string.lower()
+
 		
 		encoded_string = encoded_string.replace('!', "")
 		encoded_string = encoded_string.replace('?', "")
 		encoded_string = encoded_string.replace('.', "")
+		encoded_string = cleanup(encoded_string)
+
 		d = defaultdict(list)
 		splt_tweet = encoded_string.split()
 

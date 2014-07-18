@@ -100,7 +100,7 @@ if __name__ == '__main__':
 
 	tweets = [t['text'] for t in engtweets]
 
-	tweets = tweets [3:5]
+	
 	
 	# Initialize new dictionary for non_sent terms. key: terms. val: sent_score
 	non_sent_dict = {}
@@ -169,7 +169,9 @@ if __name__ == '__main__':
 
 	#print 'non_sent_dict:',non_sent_dict
 	for key, val in non_sent_dict.items():
-		print key, val
+		if len(key) == 0:
+			continue
+		print key, int(val)
 
 	
 

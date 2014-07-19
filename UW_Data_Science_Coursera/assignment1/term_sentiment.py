@@ -106,8 +106,7 @@ if __name__ == '__main__':
 	
 	tweets = [t['text'] for t in engtweets]
 
-	
-	tweets = tweets [2:5]
+
 	sent_dictionary = {}
 
 	# Initialize new dictionary for non_sent terms. key: terms. val: sent_score
@@ -178,7 +177,7 @@ if __name__ == '__main__':
 		if len(key) == 0:
 			continue
 		print key, float(val)
-		print type(key), type(val)
+		#print type(key), type(val)
 	
 	
 

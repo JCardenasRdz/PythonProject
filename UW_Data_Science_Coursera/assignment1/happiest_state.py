@@ -1,7 +1,9 @@
 import sys
 import json
+import string
 from collections import defaultdict
-import numpy as np
+
+
 """"
 Problen 2: Derive the sentiment of each tweet
 accepts two arguments on the command line: a sentiment file 
@@ -34,8 +36,20 @@ def main():
 	lines(tweet_file)
 
 def eng_tweets(tweets_all, key, valuelist):
+
 	return [engtweets for engtweets in tweets_all if engtweets[key] in valuelist]
 
+
+def us_tweets(list, key, valuelist):
+	return [ ustweets for ustweets in tweets_all if ustweets[key]in valuelist]
+
+
+def cleanup(raw_text):
+    cleaned_up = ""
+    for char in raw_text:
+       if char not in punctuations:
+           cleaned_up = cleaned_up + char
+    return cleaned_up
 
 def sent_score(w):
 
@@ -57,6 +71,8 @@ if __name__ == '__main__':
 	print "Running sentiment analysis on tweets..."
 	main()
 
+	punctuations = set(string.punctuation)
+
 	sent_file = open(sys.argv[1])
 	scores = {} # initialize an empty dictionary
 	for line in sent_file:
@@ -68,27 +84,33 @@ if __name__ == '__main__':
 	
   	tweets_full= [json.loads(line) for line in open(sys.argv[2])]
 	#print tweets_full[0]
-	tweets_all = [rec for rec in tweets_full if 'text' and 'lang' in rec]
+	tweets_all = [rec for rec in tweets_full if 'text' and 'lang' and 'place' in rec]
+	place_all = [loc for loc in tweets_full if 'place' and 'name' in loc]
 	engtweets = eng_tweets(tweets_all, "lang", "en")
+	# us_engtweets = us_tweets(tweets_all,"country","United States")
+
 	#tweets =[eng['lang'] for eng in tweets if 'lang' in eng] #checking languages of all english tweets.
 
 	print 'Number of English Tweets: ', len(engtweets)
 
+	place = [l['place']for l in engtweets]
+
 	tweets = [t['text'] for t in engtweets]
+
 
 	tweet_dictionary={}
 	
-	#For each tweet, print index, content of tweet, parse out content, calculate sent score
+	For each tweet, print index, content of tweet, parse out content, calculate sent score
 	for idx_t, val in enumerate(tweets):
 		unicode_string = tweets[idx_t]
 		encoded_string = unicode_string.encode('utf-8')
 		#print 'upper:', encoded_string
 		encoded_string = encoded_string.lower()
 		#print 'lower:', encoded_string
-		encoded_string = encoded_string.replace('!', "")
-		encoded_string = encoded_string.replace('?', "")
-		encoded_string = encoded_string.replace('.', "")
+		encoded_string = cleanup(encoded_string)
+
 		d = defaultdict(list)
+
 		splt_tweet = encoded_string.split()
 		# Initialize sum to be 0 for every tweet.
 		print idx_t, encoded_string
